@@ -30,7 +30,7 @@ ProtonBot::Plugin.new do
             .gsub(':NICK', dat[:nick])
             .gsub(':URLNUM', k.to_s)
             .gsub(':OUT', "%C%RED\u200B#{err.message}%N"))
-        elsif [200, 201, 203, 204, 205, 206, 207, 208, 226, 304].include? res.code
+        elsif [200, 201, 203, 204, 205, 206, 207, 208, 226, 304].include?(res.code) && res["Content-Type"][/text\/html.*/]
           body = res.body.to_s
           html = Nokogiri::HTML(body)
           dat.reply(pattern
