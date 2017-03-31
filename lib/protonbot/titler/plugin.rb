@@ -36,7 +36,7 @@ ProtonBot::Plugin.new do
           dat.reply(pattern
             .gsub(':NICK', dat[:nick])
             .gsub(':URLNUM', k.to_s)
-            .gsub(':OUT', "%C%GREEN\u200B" + html.css("title").children.to_s + '%N'))
+            .gsub(':OUT', "%C%GREEN\u200B" + html.title + '%N'))
         else
           dat.reply(pattern
             .gsub(':NICK', dat[:nick])
