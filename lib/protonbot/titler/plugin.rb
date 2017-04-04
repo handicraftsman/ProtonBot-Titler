@@ -38,10 +38,16 @@ ProtonBot::Plugin.new do
             .gsub(':URLNUM', (k+1).to_s)
             .gsub(':OUT', "%C%GREEN\u200B" + html.title.strip.gsub(/\n/, ' ') + '%N'))
         else
+          contenttype =
+            if res["Content-Type"]
+              ' %C%GREEN' + res["Content-Type"] + '%N'
+            else
+              ''
+            end
           dat.reply(pattern
             .gsub(':NICK', dat[:nick])
             .gsub(':URLNUM', (k+1).to_s)
-            .gsub(':OUT', "%C%ORANGE\u200B#{res.code}%N"))
+            .gsub(':OUT', "%C%ORANGE\u200B#{res.code}%N#{contenttype}"))
         end
       end
     end
